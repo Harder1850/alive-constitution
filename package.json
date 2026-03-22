@@ -1,0 +1,14 @@
+{
+  "name": "alive-constitution",
+  "version": "0.1.0",
+  "description": "Constitutional law layer of ALIVE. Defines invariants, contracts, identity, and policy.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"No tests yet\""
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
