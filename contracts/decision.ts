@@ -1,7 +1,9 @@
+import type { Action } from './action';
+
 export interface Decision {
   id: string;
-  selectedActionId: string;
-  rationale: string;
+  selected_action: Action;
   confidence: number;
-  timestamp: number;
+  admissibility_status: 'pending' | 'passed' | 'blocked';
+  reason: string;
 }

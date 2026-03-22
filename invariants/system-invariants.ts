@@ -1,5 +1,20 @@
-/** System-wide invariants. These are absolute. No layer may override them. */
-export const ALIVE_VERSION = "0.1.0";
-export const IDENTITY_IMMUTABLE = true;
-export const MAX_RECURSIVE_DEPTH = 10;
-export const COGNITION_TIMEOUT_MS = 30000;
+export const SystemInvariants = {
+  NO_COGNITION_WITHOUT_STG: {
+    description: 'No cognitive cycle may run without runtime STG authorization.',
+    enforced_by: 'alive-runtime',
+    violation_response: 'blocked',
+    amendment_ref: '0001',
+  },
+  MIND_CANNOT_EXECUTE: {
+    description: 'alive-mind may produce descriptive decisions only and may not execute actions.',
+    enforced_by: 'alive-runtime',
+    violation_response: 'blocked',
+    amendment_ref: '0001',
+  },
+  BODY_CANNOT_DECIDE: {
+    description: 'alive-body may sense and act but may not decide intent or meaning.',
+    enforced_by: 'alive-runtime',
+    violation_response: 'blocked',
+    amendment_ref: '0001',
+  },
+} as const;

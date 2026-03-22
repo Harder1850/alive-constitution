@@ -1,7 +1,8 @@
 export interface Signal {
   id: string;
-  type: string;
   source: string;
+  raw_content: string;
   timestamp: number;
-  payload: unknown;
+  firewall_status: 'pending' | 'passed' | 'blocked';
+  quality_score: number;
 }

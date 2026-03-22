@@ -4,8 +4,7 @@
   "description": "Constitutional law layer of ALIVE. Defines invariants, contracts, identity, and policy.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "test": "echo \"No tests yet\""
+    "build": "tsc"
   },
   "license": "Apache-2.0",
   "devDependencies": {

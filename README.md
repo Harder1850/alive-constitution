@@ -1,6 +1,32 @@
 # ALIVE Constitution
 
-> **Constitution defines → Runtime governs → Mind thinks → Body acts → Interface displays**
+## Commitment
+
+🔒 ALIVE v7.1 — Repo Commitments
+
+This repository defines the governing law of ALIVE.
+
+It is the single source of truth for:
+- invariants
+- contracts
+- identity
+- policy
+- amendment rules
+
+This layer is immutable-by-default and may only change through formal amendment.
+
+It does not:
+- execute
+- reason
+- store runtime state
+- interact with the external world
+
+All other repos depend on this layer.
+This layer depends on nothing.
+
+## Architecture Spine
+
+Constitution defines → Runtime governs → Mind thinks → Body acts → Interface displays
 
 ## Purpose
 Defines the governing law of ALIVE: invariants, contracts, identity, and policy.
