@@ -1,7 +1,7 @@
 export interface Perception {
-  id: string;
-  raw: unknown;
-  normalized: unknown;
-  quality: number; // 0-1
-  timestamp: number;
+  signal_id: string;
+  mapped_symbols: string[];
+  novelty_score: number;
+  change_delta: number;
+  confidence: number;
 }
