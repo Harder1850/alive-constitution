@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/mikeh/dev/ALIVE/**)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(timeout 8 node --import tsx src/main.ts)"
+    ]
+  }
+}
