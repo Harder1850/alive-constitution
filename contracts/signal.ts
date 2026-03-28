@@ -10,72 +10,71 @@
  * and must never be set by any other layer.
  *
  * alive-constitution imports nothing. All other repos import from here.
+ *
+ * v16 amendment: added kind, urgency, novelty, confidence, quality_score
+ * required by STG scoring (§6A.4) and rule store (§31.7).
  */
 
-// ─── Supporting Types ─────────────────────────────────────────────────────────
-
-/** All recognised origination points for a signal. */
 export type SignalSource =
-  | 'camera'      // Physical camera sensor
-  | 'microphone'  // Audio / speech input
-  | 'telemetry'   // Automated system metrics
-  | 'system_api'  // Internal API or test harness
-  | 'peer_bot';   // External peer agent (restricted — see CONSTITUTION.json)
+  | 'camera'
+  | 'microphone'
+  | 'telemetry'
+  | 'system_api'
+  | 'filesystem'
+  | 'process'
+  | 'github'
+  | 'peer_bot';
 
-/** Lifecycle status set by alive-body firewall. */
+export type SignalKind =
+  | 'cpu_utilization'
+  | 'disk_available'
+  | 'file_change_event'
+  | 'process_error'
+  | 'process_health'
+  | 'repo_commit'
+  | 'repo_pr'
+  | 'user_input'
+  | 'system_startup'
+  | 'unknown';
+
 export type FirewallStatus =
-  | 'pending'   // Not yet inspected
-  | 'cleared'   // Passed all firewall rules
-  | 'blocked';  // Rejected — must not proceed further
-
-// ─── Signal ───────────────────────────────────────────────────────────────────
+  | 'pending'
+  | 'cleared'
+  | 'blocked';
 
 export interface Signal {
-  /** Unique identifier — used for traceability across all pipeline stages. */
   id: string;
-
-  /** Where the signal came from. */
   source: SignalSource;
-
-  /**
-   * The unparsed data (text, JSON string, base64 image, transcript, etc.).
-   * Intentionally typed as `any` — raw sensor data has no guaranteed shape.
-   * Convention: callers use String(signal.raw_content ?? '') before processing.
-   * alive-body always normalises to string before passing to runtime or mind.
-   */
+  kind: SignalKind;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   raw_content: any;
-
-  /** Epoch ms when this signal was created / first observed. */
   timestamp: number;
-
-  /**
-   * Lazy reflex trigger.
-   * When true, alive-runtime may bypass the full cognitive pipeline and execute
-   * a hardcoded emergency protocol immediately. Set by alive-body sensors only.
-   */
+  urgency: number;
+  novelty: number;
+  confidence: number;
+  quality_score: number;
   threat_flag: boolean;
-
-  /**
-   * Set by alive-body firewall.
-   * Starts as 'pending'. Becomes 'cleared' or 'blocked' after inspection.
-   * A signal with status !== 'cleared' must never reach alive-mind.
-   */
   firewall_status: FirewallStatus;
-
-  /**
-   * Set to true by alive-runtime STG after granting this signal access to the brain.
-   * No other layer may set this field.
-   */
   stg_verified?: boolean;
-
-  /** Epoch ms when alive-body first perceived this signal. */
   perceived_at?: number;
+  payload?: Record<string, unknown>;
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-/** Return the signal's unique ID. Exists for call-site symmetry across older code. */
 export function getSignalId(signal: Signal): string {
   return signal.id;
+}
+
+export function makeSignal(
+  overrides: Partial<Signal> & Pick<Signal, 'id' | 'source' | 'kind' | 'raw_content'>
+): Signal {
+  return {
+    timestamp: Date.now(),
+    urgency: 0.5,
+    novelty: 0.0,
+    confidence: 1.0,
+    quality_score: 1.0,
+    threat_flag: false,
+    firewall_status: 'pending',
+    ...overrides,
+  };
 }
