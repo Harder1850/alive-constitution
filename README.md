@@ -62,3 +62,9 @@ No emergency, survival, or runtime condition may override constitutional law.
 
 ## Drift Warning
 ⚠️ Any executable logic or cognition found here is an architectural violation.
+
+## Documentation Standard
+
+This repository follows the ALIVE documentation templates defined in:
+
+alive-constitution/docs/standards/TEMPLATES.md

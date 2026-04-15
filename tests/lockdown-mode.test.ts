@@ -6,7 +6,7 @@
 import { describe, it, expect } from '@jest/globals';
 
 // Test imports - these would be the actual contract exports
-// import type { SystemMode, RuntimeModeState, EnterModeParams, UnlockResult } from '../contracts/system-mode';
+// import type { LockdownMode, RuntimeModeState, EnterModeParams, UnlockResult } from '../contracts/system-mode';
 // import type { IncidentRecord, LockdownSummary, IncidentSeverity, IncidentCategory } from '../contracts/incident-record';
 // import type { ActionAuthorization, AuthorizationResult } from '../contracts/authorized-action';
 

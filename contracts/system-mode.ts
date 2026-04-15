@@ -21,7 +21,7 @@
  *   NORMAL    — Runtime governs actions normally; Mind is active; Body executes freely
  *   LOCKDOWN  — Runtime is strict control surface; Mind is passive; Body requires auth
  */
-export type SystemMode = 'NORMAL' | 'LOCKDOWN';
+export type LockdownMode = 'NORMAL' | 'LOCKDOWN';
 
 /**
  * Result of attempting to exit LOCKDOWN mode.
@@ -48,7 +48,7 @@ export interface UnlockResult {
  */
 export interface RuntimeModeState {
   /** Current system mode. */
-  readonly mode: SystemMode;
+  readonly mode: LockdownMode;
 
   /** Epoch ms when current mode was entered. */
   readonly enteredAt: number;
@@ -79,7 +79,7 @@ export type ModeTransitionTrigger =
  */
 export interface EnterModeParams {
   /** Target mode to enter. */
-  readonly targetMode: SystemMode;
+  readonly targetMode: LockdownMode;
 
   /** Reason for the mode change. */
   readonly reason: string;
