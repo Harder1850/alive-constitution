@@ -1,0 +1,1 @@
+{"version":3,"file":"admissibility.d.ts","sourceRoot":"","sources":["admissibility.ts"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;GAaG;AAIH;;;;;;GAMG;AACH,MAAM,MAAM,mBAAmB,GAAG,SAAS,GAAG,QAAQ,GAAG,SAAS,CAAC;AAInE;;;GAGG;AACH,MAAM,WAAW,mBAAmB;IAClC,mCAAmC;IACnC,MAAM,EAAE,mBAAmB,CAAC;IAE5B,kFAAkF;IAClF,MAAM,EAAE,MAAM,CAAC;IAEf,yCAAyC;IACzC,UAAU,EAAE,MAAM,CAAC;CACpB"}
