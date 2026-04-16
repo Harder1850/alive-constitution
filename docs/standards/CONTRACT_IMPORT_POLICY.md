@@ -1,77 +1,74 @@
-# ALIVE Contract Import Policy
-
-Status: ACTIVE
+# Contract Import Policy
 
 ## Purpose
-Prevent contract drift after canonicalization and migration.
 
-## Canonical Import Surface
+Define the canonical way all ALIVE repositories import contracts from alive-constitution.
 
-All shared contracts must be imported from:
+This is a **hard rule**, not a guideline.
 
-alive-constitution/contracts
+---
 
-Barrel exports include:
+## Canonical Import Rule
+
+If a contract is exported from:
+
+contracts/index.ts
+
+It MUST be imported using the barrel:
+
+```ts
+import { Signal } from 'alive-constitution/contracts'
+```
+
+## Barrel-Eligible Contracts
+
+These MUST use the barrel:
+
 - signal
 - admissibility
-- authorized-action
-- memory
 - state
-- flag
-- intent
-- system-invariants
+- memory
 - crg
 - relay-envelope
 - memory-shells
 
-Example:
+## Direct-Only Contracts
 
-import { Signal, Episode } from 'alive-constitution/contracts'
+These MUST remain direct imports:
 
-## Direct-Only Exceptions
+```ts
+import { Action } from 'alive-constitution/contracts/action'
+```
 
-These must remain direct imports:
+Direct-only list:
 
-- contracts/action
-- contracts/decision
-- contracts/system-mode
-
-Also direct-only unless added to barrel:
+- action
+- decision
+- system-mode
 - incident-record
 - intent-thread
-- memory-entry
-- symbol
-- story
-- transition
-- perception
-- relationship
-
-Example:
-
-import type { Action } from 'alive-constitution/contracts/action'
 
 ## Rules
 
-1. If exported by the barrel → use the barrel
-2. Do not import barrel contracts from file paths
-3. Mixed imports:
-   - barrel for shared
-   - direct for exceptions
-4. Consolidate barrel imports where possible
-5. Do not edit generated files
+1. Do NOT mix barrel and direct imports for the same contract
+2. Do NOT bypass the barrel for barrel-eligible contracts
+3. Do NOT add new exports to contracts/index.ts without review
+4. Do NOT refactor import paths outside this policy
 
-## Change Control
+## Enforcement
 
-Any change to contracts/index.ts requires explicit review.
+All repositories must comply:
 
-## Baseline
+- alive-body
+- alive-runtime
+- alive-mind
+- alive-interface
 
-- alive-constitution: 9a48d71
-- alive-body: 4a6e083
-- alive-runtime: 914fb3d
-- alive-mind: 5aa7e22
+Violations must be corrected immediately.
 
-## Rule of Thumb
+## Status
 
-If it's in contracts/index.ts → use the barrel  
-If it's not → use direct import (if allowed)
+Established during:
+Contract Migration Phase 1 (canonicalization pass)
+
+This document is the source of truth.
